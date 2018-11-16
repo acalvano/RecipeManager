@@ -9,14 +9,14 @@ public class RecipeEntity {
     private int     recipeServings;
     private String  recipeCategory;
     private int     recipeYield;
-    private int     recipeYieldUnits;
+    private String  recipeYieldUnits;
     private String  recipeInstructions;
 
     public RecipeEntity() {
     }
 
     public RecipeEntity(int id, Date date, String recipeName, int recipeServings,
-                        String recipeCategory, int recipeYield, int recipeYieldUnits, String recipeInstructions) {
+                        String recipeCategory, int recipeYield, String recipeYieldUnits, String recipeInstructions) {
         this.id = id;
         this.date = date;
         this.recipeName = recipeName;
@@ -28,7 +28,7 @@ public class RecipeEntity {
     }
 
     public RecipeEntity(Date date, String recipeName, int recipeServings,
-                        String recipeCategory, int recipeYield, int recipeYieldUnits, String recipeInstructions) {
+                        String recipeCategory, int recipeYield, String recipeYieldUnits, String recipeInstructions) {
         this.date = date;
         this.recipeName = recipeName;
         this.recipeServings = recipeServings;
@@ -86,11 +86,11 @@ public class RecipeEntity {
         this.recipeYield = recipeYield;
     }
 
-    public int getRecipeYieldUnits() {
+    public String getRecipeYieldUnits() {
         return recipeYieldUnits;
     }
 
-    public void setRecipeYieldUnits(int recipeYieldUnits) {
+    public void setRecipeYieldUnits(String recipeYieldUnits) {
         this.recipeYieldUnits = recipeYieldUnits;
     }
 
