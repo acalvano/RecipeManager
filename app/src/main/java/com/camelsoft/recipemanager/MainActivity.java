@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.camelsoft.recipemanager.model.RecipeEntity;
+import com.camelsoft.recipemanager.ui.RecipesAdapter;
 import com.camelsoft.recipemanager.utilities.SampleData;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
 
     private List<RecipeEntity> recipesData = new ArrayList<>();
+    private RecipesAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
+
+        mAdapter = new RecipesAdapter(recipesData, this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
