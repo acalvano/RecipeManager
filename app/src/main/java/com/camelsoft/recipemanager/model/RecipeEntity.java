@@ -1,8 +1,14 @@
 package com.camelsoft.recipemanager.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+
 import java.util.Date;
 
+@Entity(tableName = "recipes")
 public class RecipeEntity {
+    @PrimaryKey(autoGenerate = true)
     private int     id;
     private Date    date;
     private String  recipeName;
@@ -12,6 +18,7 @@ public class RecipeEntity {
     private String  recipeYieldUnits;
     private String  recipeInstructions;
 
+    @Ignore
     public RecipeEntity() {
     }
 
@@ -27,6 +34,7 @@ public class RecipeEntity {
         this.recipeInstructions = recipeInstructions;
     }
 
+    @Ignore
     public RecipeEntity(Date date, String recipeName, int recipeServings,
                         String recipeCategory, int recipeYield, String recipeYieldUnits, String recipeInstructions) {
         this.date = date;
