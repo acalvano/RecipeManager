@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.camelsoft.recipemanager.model.RecipeEntity;
+import com.camelsoft.recipemanager.database.RecipeEntity;
 import com.camelsoft.recipemanager.ui.RecipesAdapter;
 import com.camelsoft.recipemanager.utilities.SampleData;
 
