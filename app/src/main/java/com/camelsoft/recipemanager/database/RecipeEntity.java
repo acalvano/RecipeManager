@@ -1,4 +1,4 @@
-package com.camelsoft.recipemanager.model;
+package com.camelsoft.recipemanager.database;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;

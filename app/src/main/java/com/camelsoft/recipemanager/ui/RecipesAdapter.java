@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.camelsoft.recipemanager.R;
-import com.camelsoft.recipemanager.model.RecipeEntity;
+import com.camelsoft.recipemanager.database.RecipeEntity;
 
 import java.util.List;
 
