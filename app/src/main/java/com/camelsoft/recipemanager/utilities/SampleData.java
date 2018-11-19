@@ -1,6 +1,6 @@
 package com.camelsoft.recipemanager.utilities;
 
-import com.camelsoft.recipemanager.model.RecipeEntity;
+import com.camelsoft.recipemanager.database.RecipeEntity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
