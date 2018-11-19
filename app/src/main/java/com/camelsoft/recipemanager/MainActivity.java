@@ -1,5 +1,6 @@
 package com.camelsoft.recipemanager;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +13,7 @@ import android.view.MenuItem;
 
 import com.camelsoft.recipemanager.database.RecipeEntity;
 import com.camelsoft.recipemanager.ui.RecipesAdapter;
-import com.camelsoft.recipemanager.utilities.SampleData;
+import com.camelsoft.recipemanager.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     private List<RecipeEntity> recipesData = new ArrayList<>();
     private RecipesAdapter mAdapter;
+    private MainViewModel mViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ButterKnife.bind(this);
+        initViewModel();
         initRecyclerView();
 
-
-        recipesData.addAll (SampleData.getRecipes());
+        recipesData.addAll (mViewModel.mRecipes);
         for (RecipeEntity recipe:
                 recipesData) {
             Log.i("RecipeManager", recipe.toString());
@@ -54,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
             
         }
 
+    }
+
+    private void initViewModel() {
+        mViewModel = ViewModelProviders.of(this)
+                .get(MainViewModel.class);
     }
 
     private void initRecyclerView() {
