@@ -1,13 +1,14 @@
 package com.camelsoft.recipemanager;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -46,22 +47,30 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ButterKnife.bind(this);
-        initViewModel();
         initRecyclerView();
-
-        recipesData.addAll (mViewModel.mRecipes);
-        for (RecipeEntity recipe:
-                recipesData) {
-            Log.i("RecipeManager", recipe.toString());
-
-            
-        }
-
+        initViewModel();
     }
 
     private void initViewModel() {
+
+        final Observer<List<RecipeEntity>> recipesObserver = new Observer<List<RecipeEntity>>() {
+            @Override
+            public void onChanged(@Nullable List<RecipeEntity> recipeEntities) {
+                recipesData.clear();
+                recipesData.addAll(recipeEntities);
+
+                if (mAdapter == null) {
+                    mAdapter = new RecipesAdapter(recipesData, MainActivity.this);
+                    mRecyclerView.setAdapter(mAdapter);
+                } else {
+                    mAdapter.notifyDataSetChanged();
+                }
+
+            }
+        };
         mViewModel = ViewModelProviders.of(this)
                 .get(MainViewModel.class);
+        mViewModel.mRecipes.observe(this, recipesObserver);
     }
 
     private void initRecyclerView() {
@@ -69,8 +78,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new RecipesAdapter(recipesData, this);
-        mRecyclerView.setAdapter(mAdapter);
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.camelsoft.recipemanager.database;
 
+import android.arch.lifecycle.LiveData;
 import android.content.Context;
 
 import com.camelsoft.recipemanager.utilities.SampleData;
@@ -11,7 +12,7 @@ import java.util.concurrent.Executors;
 public class AppRepository {
     private static AppRepository ourInstance;
 
-    public List<RecipeEntity> mRecipes;
+    public LiveData<List<RecipeEntity>> mRecipes;
     private AppDatabase mDb;
     private Executor executor = Executors.newSingleThreadExecutor();
 
@@ -24,8 +25,8 @@ public class AppRepository {
     }
 
     private AppRepository(Context context) {
-        mRecipes = SampleData.getRecipes();
         mDb = AppDatabase.getInstance(context);
+        mRecipes = getAllNotes();
     }
 
     public void addSampleData() {
@@ -36,5 +37,9 @@ public class AppRepository {
             }
         });
 
+    }
+
+    private LiveData<List<RecipeEntity>> getAllNotes() {
+        return mDb.recipeDao().getAll();
     }
 }

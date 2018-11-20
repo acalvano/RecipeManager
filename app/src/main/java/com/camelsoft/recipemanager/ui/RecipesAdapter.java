@@ -21,9 +21,9 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
     private final List<RecipeEntity> mRecipes;
     private final Context mContext;
 
-    public RecipesAdapter(List<RecipeEntity> recipes, Context context) {
-        mRecipes = recipes;
-        mContext = context;
+    public RecipesAdapter(List<RecipeEntity> mRecipes, Context mContext) {
+        this.mRecipes = mRecipes;
+        this.mContext = mContext;
     }
 
     @NonNull
