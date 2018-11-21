@@ -99,9 +99,16 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_add_sample_data) {
             addSampleData();
             return true;
+        } else if (id == R.id.action_delete_all) {
+            deleteAllRecipes();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteAllRecipes() {
+        mViewModel.deleteAllRecipes();
     }
 
     private void addSampleData() {

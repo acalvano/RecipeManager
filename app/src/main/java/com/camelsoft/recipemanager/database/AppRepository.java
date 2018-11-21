@@ -42,4 +42,13 @@ public class AppRepository {
     private LiveData<List<RecipeEntity>> getAllNotes() {
         return mDb.recipeDao().getAll();
     }
+
+    public void deleteAllRecipes() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.recipeDao().deleteAll();
+            }
+        });
+    }
 }

@@ -49,11 +49,11 @@ public class SampleData {
 
     public static List<RecipeEntity> getRecipes() {
         List<RecipeEntity> recipes = new ArrayList<>();
-        recipes.add(new RecipeEntity(1, getDate(0), RECIPE_NAME_1, RECIPE_SERVINGS_1, RECIPE_CATEGORY_1,
+        recipes.add(new RecipeEntity(getDate(0), RECIPE_NAME_1, RECIPE_SERVINGS_1, RECIPE_CATEGORY_1,
                 RECIPE_YIELD_1, RECIPE_YIELD_UNITS_1, RECIPE_INSTRUCTIONS_1));
-        recipes.add(new RecipeEntity(2, getDate(-1), RECIPE_NAME_2, RECIPE_SERVINGS_2, RECIPE_CATEGORY_2,
+        recipes.add(new RecipeEntity(getDate(-1), RECIPE_NAME_2, RECIPE_SERVINGS_2, RECIPE_CATEGORY_2,
                 RECIPE_YIELD_2, RECIPE_YIELD_UNITS_2, RECIPE_INSTRUCTIONS_2));
-        recipes.add(new RecipeEntity(3, getDate(-2), RECIPE_NAME_3, RECIPE_SERVINGS_3, RECIPE_CATEGORY_3,
+        recipes.add(new RecipeEntity(getDate(-2), RECIPE_NAME_3, RECIPE_SERVINGS_3, RECIPE_CATEGORY_3,
                 RECIPE_YIELD_3, RECIPE_YIELD_UNITS_3, RECIPE_INSTRUCTIONS_3));
         return recipes;
     }
