@@ -14,12 +14,15 @@ import com.camelsoft.recipemanager.viewmodel.EditorViewModel;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.camelsoft.recipemanager.utilities.Constants.RECIPE_ID_KEY;
+
 public class EditorActivity extends AppCompatActivity {
 
     @BindView(R.id.recipe_text)
     TextView mTextView;
 
     private EditorViewModel mViewModel;
+    private boolean mNewRecipe;
 
 
     @Override
@@ -48,5 +51,17 @@ public class EditorActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+            setTitle("new recipe");
+            mNewRecipe = true;
+
+
+        } else {
+            setTitle("Edit recipe");
+            int recipeId = extras.getInt(RECIPE_ID_KEY);
+            mViewModel.loadData(recipeId);
+        }
     }
 }
