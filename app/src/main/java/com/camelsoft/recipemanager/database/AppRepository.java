@@ -55,4 +55,13 @@ public class AppRepository {
     public RecipeEntity getRecipeById(int recipeId) {
         return mDb.recipeDao().getRecipeById(recipeId);
     }
+
+    public void insertRecipe(final RecipeEntity recipe) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.recipeDao().insertRecipe(recipe);
+            }
+        });
+    }
 }

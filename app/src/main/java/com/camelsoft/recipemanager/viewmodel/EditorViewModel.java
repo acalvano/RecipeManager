@@ -31,4 +31,16 @@ public class EditorViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public void saveNote(String recipeText) {
+        RecipeEntity recipe = mLiveRecipe.getValue();
+
+        if (recipe == null) {
+
+        } else {
+            recipe.setRecipeInstructions(recipeText);
+        }
+        mRepository.insertRecipe(recipe);
+
+    }
 }
