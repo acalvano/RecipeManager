@@ -64,4 +64,14 @@ public class AppRepository {
             }
         });
     }
+
+    public void deleteRecipe(final RecipeEntity recipe) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.recipeDao().deleteRecipe(recipe);
+            }
+        });
+
+    }
 }
