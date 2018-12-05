@@ -17,6 +17,7 @@ import com.camelsoft.recipemanager.viewmodel.EditorViewModel;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.camelsoft.recipemanager.utilities.Constants.EDITING_KEY;
 import static com.camelsoft.recipemanager.utilities.Constants.RECIPE_ID_KEY;
 
 public class EditorActivity extends AppCompatActivity {
@@ -25,7 +26,7 @@ public class EditorActivity extends AppCompatActivity {
     TextView mTextView;
 
     private EditorViewModel mViewModel;
-    private boolean mNewRecipe;
+    private boolean mNewRecipe, mEditing;
 
 
     @Override
@@ -39,6 +40,10 @@ public class EditorActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        if (savedInstanceState != null) {
+            mEditing = savedInstanceState.getBoolean(EDITING_KEY);
+        }
+
         initViewModel();
     }
 
@@ -50,7 +55,7 @@ public class EditorActivity extends AppCompatActivity {
 
             @Override
             public void onChanged(@Nullable RecipeEntity recipeEntity) {
-                if (recipeEntity != null) {
+                if (recipeEntity != null && !mEditing) {
                     mTextView.setText(recipeEntity.getRecipeInstructions());
                 }
             }
@@ -99,5 +104,11 @@ public class EditorActivity extends AppCompatActivity {
     private void saveAndReturn() {
         mViewModel.saveNote(mTextView.getText().toString());
         finish();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean(EDITING_KEY, true);
+        super.onSaveInstanceState(outState);
     }
 }
