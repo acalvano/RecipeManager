@@ -93,4 +93,6 @@
     </string>
     <string name="enter_note">Enter note</string>
     <string name="delete_all">Delete all recipes</string>
+    <string name="new_recipe">new recipe</string>
+    <string name="edit_recipe">Edit recipe</string>
 </resources>

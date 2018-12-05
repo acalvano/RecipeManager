@@ -56,12 +56,12 @@ public class EditorActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
-            setTitle("new recipe");
+            setTitle(R.string.new_recipe);
             mNewRecipe = true;
 
 
         } else {
-            setTitle("Edit recipe");
+            setTitle(R.string.edit_recipe);
             int recipeId = extras.getInt(RECIPE_ID_KEY);
             mViewModel.loadData(recipeId);
         }
