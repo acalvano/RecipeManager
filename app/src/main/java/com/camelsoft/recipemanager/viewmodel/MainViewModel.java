@@ -22,10 +22,7 @@ public class MainViewModel extends AndroidViewModel {
         mRecipes = mRepository.mRecipes;
     }
 
-    public void addSampleData() {
-
-        mRepository.addSampleData();
-    }
+    public void addSampleData() { mRepository.addSampleData(); }
 
     public void deleteAllRecipes() {
         mRepository.deleteAllRecipes();

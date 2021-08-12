@@ -52,6 +52,7 @@ public class EditorViewModel extends AndroidViewModel {
     }
 
     public void deleteRecipe() {
+
         mRepository.deleteRecipe(mLiveRecipe.getValue());
     }
 }

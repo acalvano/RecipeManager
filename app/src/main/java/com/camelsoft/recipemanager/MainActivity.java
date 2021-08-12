@@ -39,29 +39,32 @@ public class MainActivity extends AppCompatActivity {
     private RecipesAdapter mAdapter;
     private MainViewModel mViewModel;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ButterKnife.bind(this);
         initRecyclerView();
         initViewModel();
+
     }
 
     private void initViewModel() {
 
-        final Observer<List<RecipeEntity>> recipesObserver = new Observer<List<RecipeEntity>>() {
+        final Observer<List<RecipeEntity>> recipesObserver =
+                new Observer<List<RecipeEntity>>() {
             @Override
             public void onChanged(@Nullable List<RecipeEntity> recipeEntities) {
                 recipesData.clear();
                 recipesData.addAll(recipeEntities);
 
                 if (mAdapter == null) {
-                    mAdapter = new RecipesAdapter(recipesData, MainActivity.this);
+                    mAdapter = new RecipesAdapter(recipesData,
+                            MainActivity.this);
                     mRecyclerView.setAdapter(mAdapter);
                 } else {
                     mAdapter.notifyDataSetChanged();
@@ -69,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
+
         mViewModel = ViewModelProviders.of(this)
                 .get(MainViewModel.class);
         mViewModel.mRecipes.observe(this, recipesObserver);
@@ -79,10 +83,9 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        DividerItemDecoration divider = new DividerItemDecoration(mRecyclerView.getContext(),
-                layoutManager.getOrientation());
+        DividerItemDecoration divider = new DividerItemDecoration(
+                mRecyclerView.getContext(), layoutManager.getOrientation());
         mRecyclerView.addItemDecoration(divider);
-
 
     }
 

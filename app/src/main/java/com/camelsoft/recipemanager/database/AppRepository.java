@@ -26,7 +26,7 @@ public class AppRepository {
 
     private AppRepository(Context context) {
         mDb = AppDatabase.getInstance(context);
-        mRecipes = getAllNotes();
+        mRecipes = getAllRecipes();
     }
 
     public void addSampleData() {
@@ -36,10 +36,9 @@ public class AppRepository {
                 mDb.recipeDao().insertAll(SampleData.getRecipes());
             }
         });
-
     }
 
-    private LiveData<List<RecipeEntity>> getAllNotes() {
+    private LiveData<List<RecipeEntity>> getAllRecipes() {
         return mDb.recipeDao().getAll();
     }
 
@@ -72,6 +71,5 @@ public class AppRepository {
                 mDb.recipeDao().deleteRecipe(recipe);
             }
         });
-
     }
 }

@@ -28,7 +28,6 @@ public class EditorActivity extends AppCompatActivity {
     private EditorViewModel mViewModel;
     private boolean mNewRecipe, mEditing;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +51,6 @@ public class EditorActivity extends AppCompatActivity {
                 .get(EditorViewModel.class);
 
         mViewModel.mLiveRecipe.observe(this, new Observer<RecipeEntity>() {
-
             @Override
             public void onChanged(@Nullable RecipeEntity recipeEntity) {
                 if (recipeEntity != null && !mEditing) {
@@ -65,8 +63,6 @@ public class EditorActivity extends AppCompatActivity {
         if (extras == null) {
             setTitle(R.string.new_recipe);
             mNewRecipe = true;
-
-
         } else {
             setTitle(R.string.edit_recipe);
             int recipeId = extras.getInt(RECIPE_ID_KEY);
@@ -96,9 +92,8 @@ public class EditorActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-
-        saveAndReturn();
+        public void onBackPressed() {
+            saveAndReturn();
     }
 
     private void saveAndReturn() {
